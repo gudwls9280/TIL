@@ -60,3 +60,20 @@
    3. subsampling: 이미지를 구성하는 픽셀들이 인접한 픽셀들끼리는 비슷한 정보를 가진다는 특성에 기반
       1. 과대적합 방지, 효율적 계산하게 도와준다.
       2. (스트라이드 없는 합성곱) 조밀한 특성맵을 만들고 그 다음 작은 패치에 대해 최대로 활성화된 특성 고르는 것
+
+## CNN 다양한 네트워크
+### VGG 16
+```
+from tensorflow.keras.applications import VGG16
+vgg_net=VGG16(include_top=True, weights='imagenet',
+              input_tensor=None, input_shape=None,
+              pooling=None, classes=1000)
+```
+### VGG 19
+
+```
+from tensorflow.keras.applications import VGG19
+vgg_net_19=VGG19(include_top=True, weights='imagenet',
+              input_tensor=None, input_shape=None,
+              pooling=None, classes=1000)
+```
