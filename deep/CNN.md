@@ -61,15 +61,40 @@
       1. 과대적합 방지, 효율적 계산하게 도와준다.
       2. (스트라이드 없는 합성곱) 조밀한 특성맵을 만들고 그 다음 작은 패치에 대해 최대로 활성화된 특성 고르는 것
 
+
+
 ## CNN 다양한 네트워크
-### VGG 16
+### LeNet-5
+1. LeNet-5는 복잡하지 않은 망을 이용하여 (당시 기준)높은 성능을 보여주었을 뿐만 아니라 Convolutional layer와 pooling의 조합을 반복하는 현대적인 CNN 구조를 제안했다는 점에서 의미가 있는 모델
+2. 3개의 convolution layers, 2개의 subsampling, 1층의 full-connected, output layer 구성
+3. tanh 활성화 함수 사용
+![image](https://user-images.githubusercontent.com/53258777/206830876-5249c2e1-b970-4392-b4dc-c62b5bd838d9.png)
+
+### Visual Geometry Group Net(VGGNet)
+1. 네트워크의 깊이를 깊게 만드는 것이 성능에 어떤 영향을 미치는지 확인하고자 연구 시작
+2. 망이 깊어지면 출력단에서 하나의 픽셀이 담고 있는 정보의 양이 많아지며 훨씬 복잡한 문제도 해결 가능
+    1. 망이 깊어지면 문제점: 자유 파라미터의 수가 증가하게 되면서 overfitting 발생 가능성 높아지고 연산량의 증가로 인한 학습 시간이 오래 걸린다.
+3. 활성화 함수로 ReLU 사용, Dropout 적용
+4. 합성곱과 풀링 계층으로 구성된 블록과 분류를 위한 완전 연결계층으로 결합된 전형적인 구조
+5. 인위적으로 데이터셋을 늘림
+6. 이미지 변환, 좌우 반전 등의 변환을 시도
+7. 몇 개의 합성곱 계층과 최대 풀링 계층이 따르는 5개의 블록과 3개의 완전 연결계층으로 구성
+8. 모든 합성곱과 최대 풀링 계층에 padding='SAME' 적용
+9. 합성곱 계층에는 stride=1, 활성화 함수로 ReLU 사용
+10. 특성맵 깊이를 증가 시킴
+11. 척도 변경을 통한 데이터 보강(Data Augmentation)
+12. 3x3 커널을 갖는 두 합성곱 계층을 쌓은 스택이 5x5 커널을 갖는 하나의 합성곱 계층과 동일한 수용영역(ERF)을 가짐
+13. 11X11 사이즈의 필터 크기를 가지는 AlexNet과 비교하여 더 작은 합성곱 계층을 더 많이 포함해 더 큰 ERF를 얻음
+14. 이와 같이 합성곱 계층의 개수가 많아지면 매개변수 개수를 줄이고 비선형성을 증가시킴
+15. VGG-19 아키텍쳐는 VGG-16에 3개의 합성곱 계층을 추가
+#### VGG 16
 ```
 from tensorflow.keras.applications import VGG16
 vgg_net=VGG16(include_top=True, weights='imagenet',
               input_tensor=None, input_shape=None,
               pooling=None, classes=1000)
 ```
-### VGG 19
+#### VGG 19
 
 ```
 from tensorflow.keras.applications import VGG19
