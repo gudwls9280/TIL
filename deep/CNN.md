@@ -94,6 +94,10 @@ vgg_net=VGG16(include_top=True, weights='imagenet',
               input_tensor=None, input_shape=None,
               pooling=None, classes=1000)
 ```
+![image](https://user-images.githubusercontent.com/53258777/206831278-33e1c066-eae1-4696-981b-1ebd56e3262a.png)
+
+![image](https://user-images.githubusercontent.com/53258777/206831311-0a976d2b-bc4d-4477-adff-ffb7b0609315.png)
+
 #### VGG 19
 
 ```
@@ -102,3 +106,4 @@ vgg_net_19=VGG19(include_top=True, weights='imagenet',
               input_tensor=None, input_shape=None,
               pooling=None, classes=1000)
 ```
+![image](https://user-images.githubusercontent.com/53258777/206831381-2ba54f8e-ef15-400d-9f5a-19b0878f2cb5.png)
