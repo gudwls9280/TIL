@@ -64,6 +64,8 @@
 
 
 ## CNN 다양한 네트워크
+![image](https://user-images.githubusercontent.com/53258777/206835360-57d5ebc5-c92a-400d-9924-eec5dde62bb0.png)
+
 ### LeNet-5
 1. LeNet-5는 복잡하지 않은 망을 이용하여 (당시 기준)높은 성능을 보여주었을 뿐만 아니라 Convolutional layer와 pooling의 조합을 반복하는 현대적인 CNN 구조를 제안했다는 점에서 의미가 있는 모델
 2. 3개의 convolution layers, 2개의 subsampling, 1층의 full-connected, output layer 구성
@@ -107,3 +109,20 @@ vgg_net_19=VGG19(include_top=True, weights='imagenet',
               pooling=None, classes=1000)
 ```
 ![image](https://user-images.githubusercontent.com/53258777/206831381-2ba54f8e-ef15-400d-9f5a-19b0878f2cb5.png)
+
+### GoogLeNet
+1. 2014 ILSVRC에서 VGG19를 이기고 우승을 차지한 네트워크
+2. VGG19보다 좀 더 깊은 22층으로 구성 / 구글이 개발에 참여
+3. 1X1 convolution을 사용하여 특성맵의 개수를 줄이는 목적으로 사용 > 연산량 감소 > 네트워크를 더 깊이 만들어준다.
+4. Inception을 사용하여 좀 더 다양한 종류의 특성을 도출
+5. global average pooling은 전 층에서 산출된 특성맵들을 각각 평균낸 것을 이어서 1차원 벡터로 만들어준다. 그래야 최종적으로 이미지 분류를 위한 softmax층을 연결해줄 수 있다. > 가중치의 개수를 상당히 없애줄 수 있다.
+6. gradient vanishing 문제를 극복하기 위해 중간에 두 개의 auxiliary classifier(훈련시에만 사용) 배치
+
+![image](https://user-images.githubusercontent.com/53258777/206835062-b189ba8b-e9e5-4b16-a9d1-60ab54965a18.png)
+
+### ResNet
+1. 2015 ILSVRC 우승을 차지한 네트워크 / 마이크로소프트에서 개발
+2. ResNet 개발자들은 망을 무조건 깊게만 하면 성능이 더 좋아질까?의 의문을 가지고 테스트한 결과 깊게 한다고 무조건 좋은 것이 아닌 뭔가 새로운 방법이 있어야 망을 깊게 만드는 효과를 볼 수 있다는 것을 깨달음
+3. Residual Black의 출현: 입력값을 출력값에 더해줄 수 있도록 지름길을 하나 생성
+4. VGG19의 구조를 뼈대 + convolution layers 추가 + shortcuts 추가
+5. shortcut을 연결해서 residual을 최소가 되게 학습한 효과 + 깊은 구조일수록 성능이 좋다.
