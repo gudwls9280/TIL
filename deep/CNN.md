@@ -126,3 +126,7 @@ vgg_net_19=VGG19(include_top=True, weights='imagenet',
 3. Residual Black의 출현: 입력값을 출력값에 더해줄 수 있도록 지름길을 하나 생성
 4. VGG19의 구조를 뼈대 + convolution layers 추가 + shortcuts 추가
 5. shortcut을 연결해서 residual을 최소가 되게 학습한 효과 + 깊은 구조일수록 성능이 좋다.
+```
+from keras.applications import inception_v3
+model = inceotion_v3.InceptionV3(weights='imagenet', include_top=True)
+```
