@@ -135,3 +135,4 @@ model = inceotion_v3.InceptionV3(weights='imagenet', include_top=True)
 4. VGG19의 구조를 뼈대 + convolution layers 추가 + shortcuts 추가
 5. shortcut을 연결해서 residual을 최소가 되게 학습한 효과 + 깊은 구조일수록 성능이 좋다.
 
+![image](https://user-images.githubusercontent.com/53258777/206835933-41f4dea8-4e07-4ce7-bd8a-544456aaed58.png)
