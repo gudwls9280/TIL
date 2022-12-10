@@ -112,13 +112,21 @@ vgg_net_19=VGG19(include_top=True, weights='imagenet',
 
 ### GoogLeNet
 1. 2014 ILSVRC에서 VGG19를 이기고 우승을 차지한 네트워크
-2. VGG19보다 좀 더 깊은 22층으로 구성 / 구글이 개발에 참여
-3. 1X1 convolution을 사용하여 특성맵의 개수를 줄이는 목적으로 사용 > 연산량 감소 > 네트워크를 더 깊이 만들어준다.
-4. Inception을 사용하여 좀 더 다양한 종류의 특성을 도출
-5. global average pooling은 전 층에서 산출된 특성맵들을 각각 평균낸 것을 이어서 1차원 벡터로 만들어준다. 그래야 최종적으로 이미지 분류를 위한 softmax층을 연결해줄 수 있다. > 가중치의 개수를 상당히 없애줄 수 있다.
-6. gradient vanishing 문제를 극복하기 위해 중간에 두 개의 auxiliary classifier(훈련시에만 사용) 배치
+2. 인셉션 블록이라는 개념을 도입하여 인셉션 네트워크라고도 불림
+3. VGG19보다 좀 더 깊은 22층으로 구성 / 구글이 개발에 참여
+4. 1X1 convolution을 사용하여 특성맵의 개수를 줄이는 목적으로 사용 > 연산량 감소 > 네트워크를 더 깊이 만들어준다.
+5. Inception을 사용하여 좀 더 다양한 종류의 특성을 도출
+6. global average pooling은 전 층에서 산출된 특성맵들을 각각 평균낸 것을 이어서 1차원 벡터로 만들어준다. 그래야 최종적으로 이미지 분류를 위한 softmax층을 연결해줄 수 있다. > 가중치의 개수를 상당히 없애줄 수 있다.
+7. gradient vanishing 문제를 극복하기 위해 중간에 두 개의 auxiliary classifier(훈련시에만 사용) 배치
+8. 완전 연결 계층 대신 풀링 계층 사용 / 중간 소실로 경사 소실 문제 해결
 
-![image](https://user-images.githubusercontent.com/53258777/206835062-b189ba8b-e9e5-4b16-a9d1-60ab54965a18.png)
+![image](https://user-images.githubusercontent.com/53258777/206835904-697d7f66-1357-476b-97e1-387fb235ee82.png)
+
+![image](https://user-images.githubusercontent.com/53258777/206835894-64b8bd8d-8696-46af-bfee-1e71633d901b.png)
+```
+from keras.applications import inception_v3
+model = inceotion_v3.InceptionV3(weights='imagenet', include_top=True)
+```
 
 ### ResNet
 1. 2015 ILSVRC 우승을 차지한 네트워크 / 마이크로소프트에서 개발
@@ -126,7 +134,4 @@ vgg_net_19=VGG19(include_top=True, weights='imagenet',
 3. Residual Black의 출현: 입력값을 출력값에 더해줄 수 있도록 지름길을 하나 생성
 4. VGG19의 구조를 뼈대 + convolution layers 추가 + shortcuts 추가
 5. shortcut을 연결해서 residual을 최소가 되게 학습한 효과 + 깊은 구조일수록 성능이 좋다.
-```
-from keras.applications import inception_v3
-model = inceotion_v3.InceptionV3(weights='imagenet', include_top=True)
-```
+
