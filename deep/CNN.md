@@ -70,6 +70,7 @@
 1. LeNet-5는 복잡하지 않은 망을 이용하여 (당시 기준)높은 성능을 보여주었을 뿐만 아니라 Convolutional layer와 pooling의 조합을 반복하는 현대적인 CNN 구조를 제안했다는 점에서 의미가 있는 모델
 2. 3개의 convolution layers, 2개의 subsampling, 1층의 full-connected, output layer 구성
 3. tanh 활성화 함수 사용
+
 ![image](https://user-images.githubusercontent.com/53258777/206830876-5249c2e1-b970-4392-b4dc-c62b5bd838d9.png)
 
 ### Visual Geometry Group Net(VGGNet)
